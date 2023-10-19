@@ -39,10 +39,12 @@ def DbtoDict():
     if results:
         #creates a python dictionary with all the names
         name_dict = {}
+        i = 0 
         for result in results: 
             name = result[0]
             #Use the name as a key and assign a placeholder value
-            name_dict[name] = None
+            name_dict[i] = name
+            i += 1 
             
             
     else: 
