@@ -14,10 +14,12 @@ From there I need to make sure that my unstructured
 is working using the following code block
 """
 #%%
+
 from unstructured.partition.auto import partition
 
 elements = partition(filename="example-docs/eml/fake-email.eml")
 print("\n\n".join([str(el) for el in elements]))
+
 #%%
 
 #import block
