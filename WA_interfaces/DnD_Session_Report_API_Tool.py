@@ -14,23 +14,57 @@ Current Documentation: https://www.worldanvil.com/api/external/boromir/documenta
 
 Current API Python wrapper: https://gitlab.com/SoulLink/world-anvil-api-client
 
-Current (personal) API token "9TaQa6Z37R2ApLy4F9bZbNo0UyYRtPtBejkZGkwykSPHQpAdFFwmmTMZOGmvERWHJcdkqA7YNLM2RMOGWyBpfEhBx68g2B9vKwPDsPeZmmg2HGor2bC0kbQtJFzpDmSF5Jc0JWssvAA4pzMtKeHnhQLq9ffIdtfPEaz5pZowNOw6hC2It6K2UocykUXuyqAQkRXtJFc1U8nuVqNbb5FD1hSOmOcniUukLAmNjDJPG0KPCSn62BlnhmWI1"
-
 """
 #import block
 import os
 from pywaclient.api import BoromirApiClient
 
 
-session_report_article = client.article.put({
+new_test_article = client.article.put({
     #Title for the article
-    'title': "A test of the Code Article Builder",
+    'title': "Session Summary 08-18-24",
     #The display state of the article
     'state': "Private",
+    'isWip': true, 
+    'isDraft': true, 
+    'icon': " ra-quill-ink",
+    'Excerpt': "This is an AI generated summary of the Session, there are likley errors, if you see anny please reach out to your DM",
+    'allowComments': true,
+    'content': ai_Output,
+
+    "displayCss": """
+    /* Parchment background and styling */
+    .parchment-style {
+        background-image: Parchment Texture.jpg; 
+        background-size: cover; 
+        background-repeat: no-repeat; 
+        padding: 20px; 
+        border: 1px solid #d4bfa4; 
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); 
+        color: #4b2e05;
+        font-family: 'Georgia', serif;
+        line-height: 1.6;
+    }
+
+    /* Heading styles for medieval look */
+    .parchment-style h1, .parchment-style h2, .parchment-style h3 {
+        font-family: 'Cinzel Decorative', serif; 
+        color: #6d4c41;
+        text-shadow: 1px 1px #d4bfa4;
+    }
+
+    /* Add a soft border effect */
+    .parchment-style {
+        border-radius: 5px;
+    }
+""",
+
+"cssClasses": "parchment-style",
+
     #The world for it to go in, it references line 47-48, id is a lookup for a param in the dictionary that line 48 provides, it gives world id 
     'world': {
         'id': worlds[0]['id']
     },
     #template type for the article to be generated
     'templateType': 'report'
-})
+}) 

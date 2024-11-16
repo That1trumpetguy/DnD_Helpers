@@ -12,7 +12,7 @@ Current Documentation: https://www.worldanvil.com/api/external/boromir/documenta
 
 Current API Python wrapper: https://gitlab.com/SoulLink/world-anvil-api-client
 
-Current (personal) API token "9TaQa6Z37R2ApLy4F9bZbNo0UyYRtPtBejkZGkwykSPHQpAdFFwmmTMZOGmvERWHJcdkqA7YNLM2RMOGWyBpfEhBx68g2B9vKwPDsPeZmmg2HGor2bC0kbQtJFzpDmSF5Jc0JWssvAA4pzMtKeHnhQLq9ffIdtfPEaz5pZowNOw6hC2It6K2UocykUXuyqAQkRXtJFc1U8nuVqNbb5FD1hSOmOcniUukLAmNjDJPG0KPCSn62BlnhmWI1"
+Current (personal) API token "
 
 '''
 #import block
@@ -52,18 +52,19 @@ worlds = [world for world in client.user.worlds(authenticated_user['id'])]
 #print(worlds[0]['id'])
 
 
-# new_test_article = client.article.put({
-#     #Title for the article
-#     'title': "A test of the Code Article Builder",
-#     #The display state of the article
-#     'state': "Private",
-#     #The world for it to go in, it references line 47-48, id is a lookup for a param in the dictionary that line 48 provides, it gives world id 
-#     'world': {
-#         'id': worlds[0]['id']
-#     },
-#     #template type for the article to be generated
-#     'templateType': 'report'
-# })
+new_test_article = client.article.put({
+    #Title for the article
+    'title': "A test of the Code Article Builder",
+    #The display state of the article
+    'state': "Private",
+    'content': "This is example content, the example date is 3/28/200",
+    #The world for it to go in, it references line 47-48, id is a lookup for a param in the dictionary that line 48 provides, it gives world id 
+    'world': {
+        'id': worlds[0]['id']
+    },
+    #template type for the article to be generated
+    'templateType': 'report'
+}) 
 
 # new_test_block = client.block.put({
 #     #Title for the article
