@@ -10,7 +10,7 @@ This version quries chat gpt, although I am looking into finding models that I c
 import os
 from openai import OpenAI
 from pywaclient.api import BoromirApiClient
-
+from DnD_Session_Report_API_Tool import Push_Article
 
 client = OpenAI()
 
@@ -35,6 +35,7 @@ completion = client.chat.completions.create(
 )
 
 output = completion.choices[0].message
+Push_Article(output)
 
 
 
