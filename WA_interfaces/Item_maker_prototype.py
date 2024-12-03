@@ -54,7 +54,7 @@ worlds = [world for world in client.user.worlds(authenticated_user['id'])]
 
 new_test_article = client.article.put({
     #Title for the article
-    'title': "A test of the Code Article Builder",
+    'title': "A test of the Code Article Builder III",
     #The display state of the article
     'state': "Private",
     'content': "This is example content, the example date is 3/28/200",
