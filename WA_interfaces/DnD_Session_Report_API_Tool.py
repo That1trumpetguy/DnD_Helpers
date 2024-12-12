@@ -14,12 +14,19 @@ Current Documentation: https://www.worldanvil.com/api/external/boromir/documenta
 
 Current API Python wrapper: https://gitlab.com/SoulLink/world-anvil-api-client
 
+TO DO: 
+
+- Adapt to recieve the Date as another argument so I can title my articls appropriatly
+- I also need to formalize the CSS and the icons used
+- I will also need a way to access some of the other attributes of the inncer HTML code so I can use some of the specific boxes noted in the Documentation
+    - Notably setting, characters interacted with, 
+
 """
 #import block
 import os
 from pywaclient.api import BoromirApiClient
 
-def Push_Article(ai_Output):
+def Push_Article(ai_Output, date):
 
     client = BoromirApiClient(
     #Project Name
@@ -41,15 +48,20 @@ def Push_Article(ai_Output):
 
     new_test_article = client.article.put({
         #Title for the article
-        'title': "Session Test 11-22-24",
+        'title': f"Session Report: {date}",
         #The display state of the article
         'state': "Private",
-        'isWip': True, 
-        'isDraft': True, 
+        'isWip': False, 
+        'isDraft': False, 
         'icon': " ra-quill-ink",
         'Excerpt': "This is an AI generated summary of the Session, there are likley errors, if you see anny please reach out to your DM",
         'allowComments': True,
         'content': ai_Output,
+        #template type for the article to be generated
+        'templateType': 'report',
+        'webhookUpdate': True,
+        "cssClasses": "parchment-style",
+
 
         "displayCss": """
         /* Parchment background and styling */
@@ -84,6 +96,10 @@ def Push_Article(ai_Output):
         'world': {
             'id': worlds[0]['id']
         },
-        #template type for the article to be generated
-        'templateType': 'report'
+        'category':{
+            'id': "f610aba9-13c8-42bc-9cff-4978b933e411"
+        },
+        'cover': {
+            "id": 6172646
+        }
     }) 

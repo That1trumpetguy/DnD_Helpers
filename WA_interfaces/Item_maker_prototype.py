@@ -57,13 +57,21 @@ new_test_article = client.article.put({
     'title': "A test of the Code Article Builder III",
     #The display state of the article
     'state': "Private",
-    'content': "This is example content, the example date is 3/28/200",
+    'content': "This is example content, the example date is 12/08/2024",
+    'date': "11/12/24",
     #The world for it to go in, it references line 47-48, id is a lookup for a param in the dictionary that line 48 provides, it gives world id 
     'world': {
         'id': worlds[0]['id']
     },
     #template type for the article to be generated
-    'templateType': 'report'
+    'templateType': 'report', 
+    "cssClasses": "parchment-style",
+    
+    "displayCss": "/* Parchment background and styling */\n.parchment-style {\n    background-image: url('https://www.freepik.com/free-photo/wooden-floor-background_4100933.htm#fromView=keyword&page=1&position=0&uuid=0169a801-9b33-487f-af90-649f58e4d261'); \n    background-size: cover; \n    background-repeat: no-repeat; \n    padding: 20px; \n    border: 1px solid #d4bfa4; \n    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); \n    color: #4b2e05;\n    font-family: 'Georgia', serif;\n    line-height: 1.6;\n}\n\n/* Heading styles for medieval look */\n.parchment-style h1, .parchment-style h2, .parchment-style h3 {\n    font-family: 'Cinzel Decorative', serif; \n    color: #6d4c41;\n    text-shadow: 1px 1px #d4bfa4;\n}\n\n/* Add a soft border effect */\n.parchment-style {\n    border-radius: 5px;\n}",
+    
+    'cover': {
+        "id": 6172646
+    }
 }) 
 
 # new_test_block = client.block.put({

@@ -5,9 +5,16 @@ This is meant to the the summarizer aspect of the DnD WA interface, it is meant 
 on my local home system, and translate it into a shorter form summary for posting via the API to the World Anvil, both for the party and myself
 
 This version quries chat gpt, although I am looking into finding models that I can runan d train locally on my machine at a later date.
+
+TO DO: 
+
+- I need a way to give the summarizer some setting context and information, but only once
+- I need a way to fix misspellings of character names
+- I need a way to remove soem of the janky character analysis that the model tries to include, its not welcome in a summary for players
 """
 #import block
 import os
+import re
 from openai import OpenAI
 from pywaclient.api import BoromirApiClient
 #This is my own custom code, which takes the output from GTP and pushes it into a summary article
@@ -34,11 +41,13 @@ for file_name in os.listdir(input_path):
                 model= "gpt-4o-mini", 
                 messages = [
                     {
-                        "role": "system", "content": """You are a helper for summarizing the transcripts of recorded DnD sesions, highlight any loot items 
-                        that are picked up, characters they meet, or events where a party member goes down or dies. The party members may contain the following players:
-                        Michi (female), Ord (Male), Insang Hang (Male), Jizzard (Male), and Junoon (Male). Give me as much detail as can fit in a 1-3 page
-                        summary, then in a seperate section detail any NPC characters that the players may have encountered. Do not retain memeory of any other transcription projects or inputs you 
-                        have previousley recieved, treat each input as unique and new."""
+                        "role": "system", "content": """You are a helper function, who’s purpose is to summarize transcriptions of Dungeons and Dragons games. I will be giving you a variety of transcripts over time, each one with this prompt attached, 
+                        you are to summarize the events of the session, as well as meaningful actions taken by the characters in each session, however you are not to include any “story” or “character” analysis, as these summaries exist for the players themselves. 
+                        Do not include anything like “This shows character x’s commitment to y” as that type of analysis is not needed. You will include a section detailing any NPC (Non-Plyer Character) characters that they players or party interacts with, their 
+                        descriptions, and what the result of the encounter was. In addition to this you will also include a detailed breakdown of any loot or items the party picked up during the session, and any money they spent in the acquisition of items. 
+                        The party members include: Michi (female, played by Nullble/Kalan), Ord (Male, played by Jake/Render), Insan Hang (Male, played by Coy/PanMelon), Jizzard (Male, Played by Hunter), Fors (Female, played by Natale), 
+                        and Junoon (Male, played by Allyanna), because of scheduling, certain characters may not be present for all of the sessions and so may be absent in the transcript or only mentioned by reference. I want all transcriptions to be in the 
+                        same structure and format, and to fit a maximum length of 4 pages, minimum 2.5 page. """
                     },
                     {
                         "role": "user", 
@@ -50,8 +59,17 @@ for file_name in os.listdir(input_path):
             #This gives us the first option that the GPT engine spits out as an output, there may be multiple outputs that I will need to look into
             output_file = completion.choices[0].message.content
 
+            #This extracts the date from the file name and allows it to be passed to the article pusher
+            match = re.search(r"DnD_(\d{2}-\d{2}-\d{2})\.txt", file_name)
+
+            if match:
+                date = match.group(1)
+                print(f"Extracted transcript from date: {date}")
+            else:
+                date = "Unknown"
+                print("Date is unknown")
             #this calls the WorldAnvil API code that I have to push the summary into an article on WA proper, this will need to be disabled for the moment becuase the API is not working for me
-            #Push_Article(output)
+            Push_Article(output_file, date)
 
             with open(f"{output_path}\{file_name}", 'w', encoding='utf-8') as summary:
                 summary.write(output_file)
