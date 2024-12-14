@@ -50,16 +50,27 @@ def Push_Article(ai_Output, date):
         #Title for the article
         'title': f"Session Report: {date}",
         #The display state of the article
-        'state': "Private",
+        'state': "Public",
         'isWip': False, 
         'isDraft': False, 
         'icon': " ra-quill-ink",
-        'Excerpt': "This is an AI generated summary of the Session, there are likley errors, if you see anny please reach out to your DM",
+        'excerpt': "This is an AI generated summary of the Session, there are likley errors, if you see anny please reach out to your DM",
         'allowComments': True,
         'content': ai_Output,
         #template type for the article to be generated
         'templateType': 'report',
         'webhookUpdate': True,
+        'communityUpdate': True,
+        'commentPlaceholder': "Comment on events here, your Dm reads all ....",
+        #'reportDate': {'date': date}, I need to switch this to yyyy-mm-dd
+        # 'rewards': 'Place rewards here',
+        # 'quests': 'Place completed quests here',
+        # 'interactions': '**NPC Interactions:** Uhh put thy character interactions here', 
+        # 'createdContent': 'No created content', 
+        # 'relatedReports': 'No related reports', 
+        # 'reportNotes': 'There are extra no notes', 
+        # 'session': None, 
+        # 'campaign': None, 
         "cssClasses": "parchment-style",
 
 
