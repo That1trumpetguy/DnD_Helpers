@@ -18,7 +18,7 @@ import re
 from openai import OpenAI
 from pywaclient.api import BoromirApiClient
 #This is my own custom code, which takes the output from GTP and pushes it into a summary article
-from DnD_Session_Report_API_Tool import Push_Article
+from DnD_Session_Report_API_Tool import Push_Session_Report
 
 client = OpenAI()
 
@@ -69,7 +69,7 @@ for file_name in os.listdir(input_path):
                 date = "Unknown"
                 print("Date is unknown")
             #this calls the WorldAnvil API code that I have to push the summary into an article on WA proper, this will need to be disabled for the moment becuase the API is not working for me
-            Push_Article(output_file, date)
+            Push_Session_Report(output_file, date)
 
             with open(f"{output_path}\{file_name}", 'w', encoding='utf-8') as summary:
                 summary.write(output_file)

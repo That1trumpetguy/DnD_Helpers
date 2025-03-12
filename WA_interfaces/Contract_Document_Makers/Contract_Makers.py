@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-
-#This now prints Hello World 
-print("Hello World")
-=======
 """
 Origin Date: 1/20/24
 
@@ -18,6 +13,8 @@ import os
 import re
 from openai import OpenAI
 from pywaclient.api import BoromirApiClient
+#This is my own custom code, which takes the output from GTP and pushes it into a summary article
+from DnD_Session_Report_API_Tool import Push_AI_Gen_Contract
 
 client = OpenAI()
 
@@ -29,7 +26,7 @@ completion = client.chat.completions.create(
             setting, write all documents as if internal to this fictional setting (no phrases in the finished product similar to: In this setting, in this world, 
             in the setting of X, ect.). These documents, while legally binding are not currenlty considered magic, therefore do not reference them as such.
             The current setting is the city of Selkath, in the counry of Karamistan. I want these documents as convoluted as possible, increasing the difficulty
-            of comprehension. Additionally, I want any documents generated to be a minimum of 3 pages, maximumm of the remaining number of tokens you have available"""
+            of comprehension. Additionally, I want any documents generated to utilize however many tokens you have remaining in your output."""
         },
         {
             "role": "user", 
@@ -44,5 +41,6 @@ completion = client.chat.completions.create(
 #This gives us the first option that the GPT engine spits out as an output, there may be multiple outputs that I will need to look into
 output_file = completion.choices[0].message.content
 
-print(output_file)
->>>>>>> 753605a602cd1e01c6e66abdc1a99b6ab91c3ceb
+subject = "Terms of Guild membership"
+
+Push_AI_Gen_Contract(output_file, subject)
