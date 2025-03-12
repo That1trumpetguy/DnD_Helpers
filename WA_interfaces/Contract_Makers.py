@@ -26,7 +26,7 @@ completion = client.chat.completions.create(
             setting, write all documents as if internal to this fictional setting (no phrases in the finished product similar to: In this setting, in this world, 
             in the setting of X, ect.). These documents, while legally binding are not currenlty considered magic, therefore do not reference them as such.
             The current setting is the city of Selkath, in the counry of Karamistan. I want these documents as convoluted as possible, increasing the difficulty
-            of comprehension. Additionally, I want any documents generated to utilize however many tokens you have remaining in your output."""
+            of comprehension. Additionally, I want any documents generated to be a minimum of five pages, or if this is not possible utilize the total sum of tokens you are allowed to in your response."""
         },
         {
             "role": "user", 
