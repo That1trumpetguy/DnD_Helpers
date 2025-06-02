@@ -26,7 +26,7 @@ def convert_to_custom_calendar(real_date):
     return f"{month_name} {day_in_month}, 971"  # Assuming year 971
 
 # Example usage
-real_date_1 = datetime(1836, 3, 6)  # March 10, 2025
+real_date_1 = datetime(1902, 5, 31)  # March 10, 2025
 #real_date_2 = datetime(2025, 3, 11)  # March 11, 2025
 
 print(convert_to_custom_calendar(real_date_1))  # Output: Namor 5, 971
