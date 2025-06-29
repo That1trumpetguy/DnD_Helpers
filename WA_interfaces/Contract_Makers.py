@@ -32,7 +32,7 @@ completion = client.chat.completions.create(
             "role": "user", 
             "content": """Please generate an adventuring guild contract for the guild Twilight Pheonix; in it contents please include a whole host of conflicting 
             stipulations and requirements, quote legal precidents that do not exist or make sense, Include a clause that automaticaly 
-            constripts the signer to the armed forces of the guilds host nation should a state of war be declared. Include clauses for
+            constripts the signer to the armed forces of the guilds host nation should a state of war be declared but hide it in as much legal jargon as possible. Include clauses for
             enforcement the void the persons right to any form of privacy"""
         }
     ]
